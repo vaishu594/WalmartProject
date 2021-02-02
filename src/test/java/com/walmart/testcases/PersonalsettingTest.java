@@ -1,0 +1,72 @@
+package com.walmart.testcases;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+import com.walmart.Base.Baseclass;
+import com.walmart.pages.Loginpage1;
+import com.walmart.pages.Myaccountpage;
+import com.walmart.pages.Personalsettings;
+import com.walmart.testutil.Testutil;
+
+public class PersonalsettingTest extends Baseclass{
+	Personalsettings Personalsetting;
+	Loginpage1 loginpage;
+	Myaccountpage myaccountpage;
+	Testutil testutil;
+	
+	public PersonalsettingTest() {     //constructor created immediately after class creation
+		super();                //before initialization1 you have to call parent class by super
+	}
+@BeforeTest
+	public void setup() {    //call browser setup method from baseclass
+	initialization1();
+		loginpage=new Loginpage1();
+		Personalsetting =new Personalsettings();
+}
+@Test(priority=1)
+	public void loginpageTitleTest() throws InterruptedException {//gives you title
+		String title=Personalsetting.validatePersonalsettingpagetitle();
+		System.out.println(title);
+		//assert.assertEquals(title, "Online Shopping Canada:Everyday Low Prices at Walmart.ca!");
+}
+@Test(priority=2)
+	public void loginpageLogoTest() throws InterruptedException {
+	boolean logo=Personalsetting.validatePersonalsettinginsidetitle();
+	//Assert.assertTrue(logo);	
+} 
+@Test(priority=3)
+	public void PersonalinfoTest() throws InterruptedException {
+
+	Personalsetting.Personalinfo("Vaishali", "Gajjar", "6393188565", "N2E3J8");
+	
+	System.out.println("Personal info done successfully");
+}
+@Test(priority=4)
+public void emailTest() throws InterruptedException  {
+	Personalsetting.Email("vjg@123", "hivaishu123");
+	System.out.println("email successful");
+}
+
+@Test(priority=5)
+public void passwordTest() throws InterruptedException  {
+	Personalsetting.password("hivaishu123", "hivaishu@123", "hivaishu@123");
+	System.out.println("password set successful");
+}
+
+@Test(priority=6)
+public void languageTest() throws InterruptedException  {
+	Personalsetting.language();
+	System.out.println("language selected successful");
+}
+
+@Test(priority=7)
+public void wincardTest() throws InterruptedException  {//it call myaccountpage class
+	Personalsetting.associate("dhf#$%^d23", "abcD123");
+	System.out.println("email successful");
+}
+@AfterTest
+	public void teardown() {
+		driver.close();
+}
+
+}
