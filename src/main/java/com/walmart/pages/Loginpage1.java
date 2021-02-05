@@ -1,12 +1,14 @@
 package com.walmart.pages;
 import java.io.IOException;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import com.walmart.pages.MyAccountpage;
 import com.walmart.Base.Baseclass;
 
 public class Loginpage1 extends Baseclass{
@@ -22,6 +24,14 @@ public class Loginpage1 extends Baseclass{
 	@FindBy(linkText="Sign in")
 	WebElement signinlink;
 	
+	//dirct sign in:
+	@FindBy(xpath="//input[@id='username']")
+	WebElement emailid;
+	
+	@FindBy(xpath="//input[@id='password']")
+	WebElement pswd1;
+	
+	//join now:
 	@FindBy(xpath="//button[contains(text(),'Sign in')]")
 	WebElement signinlinkbtn;
 	
@@ -43,10 +53,10 @@ public class Loginpage1 extends Baseclass{
 	@FindBy(xpath="//*[@id=\"password\"]")
 	WebElement pswd;
 	
-	@FindBy(xpath="//input[@id=\"marketingPreference\"]") //optional checkbox
+	@FindBy(xpath="//input[@id='marketingPreference']") //optional checkbox
 	WebElement chbox1;
 	
-	@FindBy(xpath="//input[@id=\"TAndC\"]")
+	@FindBy(xpath="//input[@id='TAndC']")
 	WebElement chbox2;
 	
 	@FindBy(xpath="//button[@class='css-vfxkzw edzik9p0']")
@@ -66,10 +76,10 @@ public class Loginpage1 extends Baseclass{
 			return walmartlogo.isDisplayed();
 		}
 	
-	public Myaccountpage login(String ftname,String ltname,String ph_no,String Email,String pwd) throws InterruptedException {
+	public MyAccountpage login(String ftname,String ltname,String ph_no,String Email,String pwd) throws InterruptedException {
 		 Actions action=new Actions(driver);
 			
-			action.moveToElement(driver.findElement(By.linkText("Sign in My account"))).build().perform();
+			action.moveToElement(driver.findElement(By.xpath("//span[contains(text(),'My account')]"))).build().perform();
 			
 			Thread.sleep(2000); //to add wait time
 			joinnowlink.click();
@@ -82,21 +92,31 @@ public class Loginpage1 extends Baseclass{
 			chbox2.click();
 			createaccountbtn.click();
 			
-			return new Myaccountpage();
+			return new MyAccountpage();
 		}
 
-	public Myaccountpage signin(String usnm, String pd) throws InterruptedException {
-     Actions action=new Actions(driver);
+	public MyAccountpage signin(String usnm, String pd) throws InterruptedException {
+  /*  Actions action=new Actions(driver);
 		
-		action.moveToElement(driver.findElement(By.linkText("Sign in My account"))).build().perform();
+		action.moveToElement(driver.findElement(By.xpath("//span[contains(text(),'My account')]"))).build().perform();
 		//.build and .perform is used to implement action.
-		Thread.sleep(2000); //to add wait time
-	   driver.findElement(By.linkText("Sign in")).click();
-		email.sendKeys(usnm);
-		pswd.sendKeys(pd);
+		//Thread.sleep(2000); //to add wait time
+		
+		WebDriverWait wt = new WebDriverWait(driver, 30);
+		wt.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Sign in")));
+	   driver.findElement(By.linkText("Sign in")).click();  */
+		
+		driver.findElement(By.xpath("//*[contains(text(),'My account')]")).click();
+		Thread.sleep(2000);
+		emailid.sendKeys(usnm);
+		pswd1.sendKeys(pd);
 		signinlinkbtn.click();
-		return new Myaccountpage();
-
+		Thread.sleep(2000);
+		
+		driver.findElement(By.xpath("//*[contains(text(),'My account')]")).click();
+		
+		return new MyAccountpage();
+		
 	}
 	
 }

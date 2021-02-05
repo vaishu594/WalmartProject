@@ -8,13 +8,13 @@ import com.walmart.Base.Baseclass;
 
 public class Searchpage extends Baseclass {
 	
-	@FindBy(xpath="//*[@id=\"global-search\"]")
+	@FindBy(xpath="//*[@class='e1xoeh2i1 css-ymj5ct eesbt950']")
 	WebElement searchtext;
 	
-	@FindBy(xpath="//*[@id=\"product-results\"]/div[1]/div/a/div/div[1]/img")
+	@FindBy(xpath="//a[@class='css-n8po8v e1m8uw912']")
 	WebElement click1stitem;
 	
-	@FindBy(xpath="//html/body/div[1]/div/div[4]/div/div/div[1]/div[3]/div[2]/div/div[2]/div[2]/div/button[1]")
+	@FindBy(xpath="//button[contains(text(),'Add to cart')]")
 	WebElement insideaddtocart;
 	// id=*[@id='search_a']
 	@FindBy(xpath="//*[@class='css-f72ea9 e1xoeh2i4']")
@@ -26,7 +26,10 @@ public class Searchpage extends Baseclass {
 	@FindBy(xpath="//label[contains(text(),'Brand')]")
 	WebElement Brand;
 	
-	@FindBy(xpath="//button[@class='css-17gzmsn ebt416s2']")
+	@FindBy(xpath="//label[contains(text(),'Product Type')]")
+	WebElement prodtype;
+	
+	@FindBy(xpath="//div[contains(text(),'Best Match')]")
 	WebElement sortby;
 	
 	@FindBy(xpath="//*[contains(text(),'Price: Low to High')]")
@@ -47,7 +50,7 @@ public class Searchpage extends Baseclass {
 	@FindBy(xpath="//button[@class='css-d4je81 ei50f4d14']")
 	WebElement removeitem;
 	
-	@FindBy(xpath="//button[@class='css-vfxkzw edzik9p0']")
+	@FindBy(xpath="//button[contains(text(),'Proceed to checkout')]")
 	WebElement proceedcheckout;
 	
 	public Searchpage()  {
@@ -61,6 +64,7 @@ public class Searchpage extends Baseclass {
 		searchbtn.click();
 		Thread.sleep(3000);
 		category.click();
+		prodtype.click();
 		sortby.click();
 		lowtohigh.click();
 		return search;
@@ -70,11 +74,17 @@ public class Searchpage extends Baseclass {
 		searchbtn.click();
 		Thread.sleep(3000);
 		click1stitem.click();
+		Thread.sleep(2000);
 		insideaddtocart.click();
+		Thread.sleep(2000);
 		checkoutbtn.click();
+		Thread.sleep(3000);
 		incitem.click();
+		Thread.sleep(1000);
 		decitem.click();
+		Thread.sleep(1000);
 		removeitem.click();
+		Thread.sleep(1000);
 		proceedcheckout.click();
 		return null;
 	

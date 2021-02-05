@@ -4,12 +4,16 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
+
+import org.apache.log4j.chainsaw.Main;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 import com.walmart.testutil.Testutil;
 import com.walmart.testutil.WebEventListener;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class Baseclass {
 	public static WebDriver driver; //global variables:making them static means we can use them in other classes too
@@ -20,9 +24,9 @@ public class Baseclass {
 	
 	//step 1
 	public  Baseclass() {//constructor
-		try { int a=System.in.read();
+		try {// int a=System.in.read();
 			prop = new Properties();//config.properties location (path)provide below
-			FileInputStream file=new FileInputStream("C:\\Users\\Jatin Gajjar\\eclipse-workspace\\WalmartProject\\src\\main\\java\\com\\walmart\\config\\config.properties");
+			FileInputStream file=new FileInputStream("D:\\eclipse-workspace\\WalmartProject\\src\\main\\java\\com\\walmart\\config\\config.properties");
 		prop.load(file);
 		}
 		catch(FileNotFoundException e) {
@@ -32,26 +36,31 @@ public class Baseclass {
 		e.printStackTrace();
 	}
 }
+	/*public static void main(String[] args) {
+		initialization1();
+	}*/
 		//step 2
 		public static void initialization1() {    //browser setup method
-			
+				
 		//read properties from config file
 			String Browsername=prop.getProperty("browser");
-			
+			System.out.println(Browsername);
+		    System.out.println(prop.getProperty("url"));
 			if (Browsername.equals("firefox")) {
-				//System.setProperty("webdriver.gecko.driver","‪C:\\Users\\vgajj\\eclipse-workspace\\website\\geckodriver.exe");//firefox
+				System.setProperty("webdriver.gecko.driver","D:\\vaishu SW QA\\geckodriver.exe");//firefox
 			     driver = new FirefoxDriver(); //launch firefox		
 			}
 			else if(Browsername.equals("Chrome")) {
-				System.setProperty("webdriver.chrome.driver","D:\\vaishu SW QA\\chromedriver.exe");
+				//System.setProperty("webdriver.chrome.driver","D:\\vaishu SW QA\\chromedriver.exe");
+				WebDriverManager.chromedriver().setup();
 				driver=new ChromeDriver();
 			}
 		
 		//WebEventListener class created inside all project base package where we create testutil class
-			e_driver=new EventFiringWebDriver(driver);
+			/*e_driver=new EventFiringWebDriver(driver);
 			//WebEventListener eventListener = new WebEventListener();
 			e_driver.register(eventListener);
-			driver=e_driver;
+			driver=e_driver;*/
 			
 		//we will specify common features
 			driver.manage().window().maximize(); 

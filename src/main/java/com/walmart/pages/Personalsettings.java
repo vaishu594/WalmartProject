@@ -13,94 +13,94 @@ public class Personalsettings extends Baseclass{
 	WebElement title;
 	
 	//personal info
-	@FindBy(xpath="//*[@id=\"set-edit-info\"]")
+	@FindBy(xpath="//*[@id='set-edit-info']")
 	WebElement editinfobtn;
 	
-	@FindBy(xpath="//*[@id=\"update-details-btn\"]")
+	@FindBy(xpath="//*[@id='update-details-btn']")
 	WebElement saveinfobtn;
 	
-	@FindBy(xpath="//*[@id=\"unset-edit-info\"]")
+	@FindBy(xpath="//*[@id='unset-edit-info']")
 	WebElement cancelinfobtn;
 	
-	@FindBy(xpath="//input[@name=\"firstName\"]")
+	@FindBy(xpath="//input[@name='firstName']")
 	WebElement firstname;
 	
-	@FindBy(xpath="//*[@id=\"shipping-last-name\"]")
+	@FindBy(xpath="//*[@name='lastName']")
 	WebElement lastname;
 	
-	@FindBy(xpath="//input[@name=\"postalCode\"]")
+	@FindBy(xpath="//input[@name='postalCode']")
 	WebElement postalcode;
-	
-	@FindBy(linkText="//*[@id=\"phone\"]")
+	//*[@id="phone"]
+	@FindBy(xpath="//*[@id='phone']")
 	WebElement phone;
 	
 	//email
-	@FindBy(xpath="//*[@id=\"set-edit-email\"]")
+	@FindBy(xpath="//*[@id='set-edit-email']")
 	WebElement editemailbtn;
 	
-	@FindBy(xpath="//input[@name=\"email\"]")
+	@FindBy(xpath="//input[@name='email']")
 	WebElement email;
 	
-	@FindBy(xpath="//*[@id=\"email-password\"]")
+	@FindBy(xpath="//*[@id='email-password']")
 	WebElement emailpswd;
 	
-	@FindBy(xpath="//*[@id=\"update-email-btn\"]")
+	@FindBy(xpath="//*[@id='update-email-btn']")
 	WebElement saveemailbtn;
 	
-	@FindBy(xpath="//*[@id=\"unset-edit-email\"]")
+	@FindBy(xpath="//*[@id='unset-edit-email']")
 	WebElement cancelemailbtn;
 	
 	//password
-	@FindBy(xpath="//*[@id=\"set-edit-password\"]")
+	@FindBy(xpath="//*[@id='set-edit-password']")
 	WebElement editpasswordbtn;
 	
-	@FindBy(xpath="//*[@id=\"oldPassword\"]")
+	@FindBy(xpath="//*[@id='oldPassword']")
 	WebElement currentpswd;
 	
-	@FindBy(xpath="//*[@id=\"password\"]")
+	@FindBy(xpath="//*[@id='password']")
 	WebElement newpswd;
 	
-	@FindBy(xpath="//*[@id=\"confirmPassword\"]")
+	@FindBy(xpath="//*[@id='confirmPassword']")
 	WebElement confirmpswd;
 	
-	@FindBy(xpath="//*[@id=\"update-passwd-btn\"]")
+	@FindBy(xpath="//*[@id='update-passwd-btn']")
 	WebElement savepswdbtn;
 	
-	@FindBy(xpath="//*[@id=\"unset-edit-password\"]")
+	@FindBy(xpath="//*[@id='unset-edit-password']")
 	WebElement cancelpswdbtn;
 	
 	//language preferrence
 	
-	@FindBy(xpath="//*[@id=\"set-edit-language\"]")
+	@FindBy(xpath="//*[@id='set-edit-language']")
 	WebElement editlanguagebtn;
 	
-	@FindBy(xpath="//*[@class=\"indent\" and contains(text(),'English')]")
+	@FindBy(xpath="//*[@class='indent' and contains(text(),'English')]")
 	WebElement languagechoose;
 	
-	@FindBy(xpath="//*[@id=\"update-language-btn\"]")
+	@FindBy(xpath="//*[@id='update-language-btn']")
 	WebElement savelanguagebtn;
 	
-	@FindBy(xpath="//*[@id=\"unset-edit-language\"]")
+	@FindBy(xpath="//*[@id='unset-edit-language']")
 	WebElement cancellanguagebtn;
 	
 	//Associate Account
 	
-	@FindBy(xpath="//*[@id=\"add-associate\"]/a")
+	@FindBy(xpath="//*[@id='add-associate']/a")
 	WebElement link;
 	
-	@FindBy(xpath="//*[@id=\"win\"]")
+	@FindBy(xpath="//*[@id='win']")
 	WebElement WIN;
 	
-	@FindBy(xpath="//*[@id=\"associate-change\"]/fieldset/label[4]/input")
+	@FindBy(xpath="//*[@id='associate-change']/fieldset/label[4]/input")
 	WebElement Discountcard;
 
 	@FindBy(xpath="//input[@name='agree']")
 	WebElement checkbox;
 	
-	@FindBy(xpath="//*[@id=\"update-associate-btn\"]")
+	@FindBy(xpath="//*[@id='update-associate-btn']")
 	WebElement savebtn;
 	
-	@FindBy(xpath="//*[@id=\"unset-edit-associate\"]")
+	@FindBy(xpath="//*[@id='unset-edit-associate']")
 	WebElement cancelbtn;
 	
 	public Personalsettings()  {
@@ -108,64 +108,69 @@ public class Personalsettings extends Baseclass{
 	}
 	public String validatePersonalsettingpagetitle() throws InterruptedException {
 		personalsettings.click();
-		Thread.sleep(2000);
+		Thread.sleep(3000);
 		return driver.getTitle();
 	}
 
 public boolean validatePersonalsettinginsidetitle() throws InterruptedException {
-	personalsettings.click();
-	Thread.sleep(2000);
+	
 	return title.isDisplayed();
 	}
 
-public void Personalinfo(String ftname,String ltname,String ph_no,String pcode) throws InterruptedException {
-	personalsettings.click();
-	Thread.sleep(2000);
+public void Personalinfo(String ftname,String ltname,String ph_no,String pcode) throws InterruptedException  {
+	
 		editinfobtn.click();
+		Thread.sleep(2000);
 		firstname.sendKeys(ftname);
 		lastname.sendKeys(ltname);
 		phone.sendKeys(ph_no);
 		postalcode.sendKeys(pcode);
 		saveinfobtn.click();
+		Thread.sleep(2000);
 		//cancelinfobtn.click();
 	}
 public void Email(String eml,String pwd) throws InterruptedException {
-	personalsettings.click();
-	Thread.sleep(2000);
+	
+	
 	editemailbtn.click();
+	Thread.sleep(3000);
 	email.sendKeys(eml);
 	emailpswd.sendKeys(pwd);
-	saveemailbtn.click();
-	//cancelemailbtn.click();
+	//saveemailbtn.click();
+	Thread.sleep(2000);
+	cancelemailbtn.click();
     }
 
 public void password(String old,String newpwd,String confirm) throws InterruptedException {
 	
-	personalsettings.click();
-	Thread.sleep(2000);
 	editpasswordbtn.click();
+	Thread.sleep(2000);
 	currentpswd.sendKeys(old);
 	newpswd.sendKeys(newpwd);
 	confirmpswd.sendKeys(confirm);
-	savepswdbtn.click();
-	//cancelpswdbtn.click();
+	//savepswdbtn.click();
+	Thread.sleep(2000);
+	cancelpswdbtn.click();
 }
 public void language() throws InterruptedException {
-	personalsettings.click();
+	
+	
+	editlanguagebtn.click();
 	Thread.sleep(2000);
-editlanguagebtn.click();
-languagechoose.click();
-savelanguagebtn.click();
-//cancellanguagebtn.click();
+	languagechoose.click();
+	//savelanguagebtn.click();
+	Thread.sleep(2000);
+	cancellanguagebtn.click();
 }
 public void associate(String Win,String Cardno) throws InterruptedException {
-	personalsettings.click();
-	Thread.sleep(2000);
-	link.click();
+	
+	 link.click();
+	 Thread.sleep(2000);
 	 WIN.sendKeys(Win);
 	 Discountcard.sendKeys(Cardno);
 	 checkbox.click();
-	 savebtn.click();
-	 //cancelbtn.click();
+	 //savebtn.click();
+	 Thread.sleep(2000);
+	 cancelbtn.click();
 }
 }

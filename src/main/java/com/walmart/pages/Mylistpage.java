@@ -11,11 +11,11 @@ public class Mylistpage  extends Baseclass{
 	
 	@FindBy(xpath="//a[contains(text(),'Communication Preferences')]")
 	WebElement CommuPreflink;
-	
+	//*[contains(text(),'My lists') and @class='eqw0yc05 css-y9g50w elkyjhv0']
 	@FindBy(xpath="//a[contains(text(),'My lists')]")
 	WebElement Mylistlink;
 	
-	@FindBy(xpath="//h1[contains(text(),'Walmart Lists')]")
+	@FindBy(xpath="//*[contains(text(),'Search for items you’d like to add to your list')]")
 	WebElement title;
 	//create new list
 	@FindBy(xpath="//*[@id=\"save-list-input\"]")
@@ -63,18 +63,11 @@ public class Mylistpage  extends Baseclass{
 		return driver.getTitle();
 		}
 	public boolean validatetitleofMylistpage() throws InterruptedException {//actual title
-		CommuPreflink.click(); 
-		Thread.sleep(3000);
-		Mylistlink.click();	
-		 Thread.sleep(3000);
 		return title.isDisplayed();
 		}
 	
 	public  void listcreate(String itemname,String newname,String searchnewitem) throws InterruptedException {
-		CommuPreflink.click(); 
-		Thread.sleep(3000);
-		Mylistlink.click();	
-		 Thread.sleep(3000);
+		
 		searchlistitem.sendKeys(itemname);
 		createlistbtn.click();
 		settingsbtn.click();

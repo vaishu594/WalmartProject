@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 import com.walmart.Base.Baseclass;
 import com.walmart.pages.Checkoutpage;
 import com.walmart.pages.Loginpage1;
-import com.walmart.pages.Myaccountpage;
+import com.walmart.pages.MyAccountpage;
 import com.walmart.pages.Myrecommendationpage;
 import com.walmart.testutil.Testutil;
 
@@ -16,7 +16,7 @@ public class CheckoutTest extends Baseclass{
 	Checkoutpage checkoutpage;
 	Myrecommendationpage myrecommendation;
 	Loginpage1 loginpage;
-	Myaccountpage myaccountpage;
+	MyAccountpage myaccountpage;
 	Testutil testutil;
  
 public CheckoutTest()  {

@@ -1,19 +1,21 @@
 package com.walmart.testcases;
 
 import static org.testng.Assert.assertEquals;
+
+import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import com.walmart.Base.Baseclass;
 import com.walmart.pages.Loginpage1;
-import com.walmart.pages.Myaccountpage;
+import com.walmart.pages.MyAccountpage;
 import com.walmart.pages.Mylistpage;
 import com.walmart.testutil.Testutil;
 public class MylistTest extends Baseclass{
 	Mylistpage mylistpage;
 	Loginpage1 loginpage;
-	Myaccountpage myaccountpage;
+	MyAccountpage myaccountpage;
 	CommunicationPreferencespage communicationpreferencespage;
 	Testutil testutil;
 	
@@ -21,10 +23,16 @@ public class MylistTest extends Baseclass{
 		super();                //before initialization1 you have to call parent class by super
 	}
 @BeforeTest
-	public void setup() {    //call browser setup method from baseclass
+	public void setup() throws InterruptedException {    //call browser setup method from baseclass
 	initialization1();
-		loginpage=new Loginpage1();
 		mylistpage=new Mylistpage();
+		loginpage=new Loginpage1();	
+		myaccountpage=loginpage.signin(prop.getProperty("username"), prop.getProperty("password"));
+		driver.findElement(By.xpath("//*[contains(text(),'My account')]")).click();
+		//driver.findElement(By.xpath("//span[@class='sign-in-message']")).click();
+		myaccountpage=new MyAccountpage();
+		testutil = new Testutil();
+		myaccountpage=new MyAccountpage();
 }
 @Test(priority=1)
 	public void MylistpageTitleTest() throws InterruptedException {//gives you title

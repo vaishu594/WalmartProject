@@ -9,19 +9,19 @@ import com.walmart.Base.Baseclass;
 
 public class Myrecommendationpage extends Baseclass{
 	
-	@FindBy(xpath="//*[@id=\"my-account-nav\"]/section[1]/ul/li[1]/a")
+	@FindBy(xpath="//a[contains(text(),'My Recommendations')]")
 	WebElement myrecmlink;
 	
-	@FindBy(xpath="//*[@id=\"my-account-content\"]/section/section[1]/div/h1")
+	@FindBy(xpath="//*[contains(text(),'Recommendations for')]")
 	WebElement titlepage;
 	
-	@FindBy(xpath="//*[@id=\"thumb-6000199255079\"]/a/div[2]/div[2]/img")
+	@FindBy(xpath="//*[@id=\"thumb-6000202198562\"]/a/div[2]/div[2]/img")
 	WebElement image;
 	
-	@FindBy(xpath="//*[@id=\"thumb-6000199255079\"]/a/div[3]")
+	@FindBy(xpath="//*[@id=\"thumb-6000202198562\"]/div/button/span")
 	WebElement productdetail;
 	
-	@FindBy(xpath="//span[@class='btn-txt']")
+	@FindBy(xpath="//*[@class='btn-txt' and contains(text(),'Add to cart')]")
 	WebElement addtocart;
 	
 	public Myrecommendationpage() {
@@ -29,20 +29,17 @@ public class Myrecommendationpage extends Baseclass{
 	}
 	public String validatemyrecommendationpagetitle() throws InterruptedException {
 		myrecmlink.click();
-		Thread.sleep(3000);
+		Thread.sleep(5000);
 		return driver.getTitle();
 	}
 	public String validatemyrecommendationvaishupagetitle() throws InterruptedException {
-		//titlepage.isDisplayed();
-		myrecmlink.click();
-		Thread.sleep(3000);
+		titlepage.isDisplayed();
+		Thread.sleep(2000);
 		return driver.getTitle();
 	}		
 	public Checkoutpage validateimage() throws InterruptedException {
-		//return image.isDisplayed();
-		//return productdetail.isDisplayed();
-		myrecmlink.click();
-		Thread.sleep(3000);
+		 image.isDisplayed();
+		 productdetail.isDisplayed();
 		addtocart.click();
 		return new Checkoutpage();
 	}	

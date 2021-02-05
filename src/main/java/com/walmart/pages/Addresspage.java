@@ -44,7 +44,6 @@ public class Addresspage extends Baseclass{
 	WebElement titleaddress;
 	
 	public Addresspage()  {
-		//super();
 		PageFactory.initElements(driver, this);	
 	}
 	public String validateAddresspagetitle() throws InterruptedException {
@@ -54,14 +53,14 @@ public class Addresspage extends Baseclass{
 	}
 
 public boolean validateaddresstitle() throws InterruptedException {
-	Addresses.click();
-	Thread.sleep(2000);	
-	return titleaddress.isDisplayed();
+		
+		Thread.sleep(2000);	
+		return titleaddress.isDisplayed();
 	}
 
 public void Address(String ftname,String ltname,String ph_no,String add1,String add2,String cty,String pcode,String prvnc) throws InterruptedException {
-	Addresses.click();
-	Thread.sleep(2000);
+	
+		Thread.sleep(2000);
 		firstname.sendKeys(ftname);
 		lastname.sendKeys(ltname);
 		Addrline1.sendKeys(add1);
@@ -71,10 +70,5 @@ public void Address(String ftname,String ltname,String ph_no,String add1,String 
 		province.sendKeys(prvnc);//select province to click
 		postalcode.sendKeys(pcode);
 		savebtn.click();
-	}
-	
-	
-	
-	
-	
+	}	
 }
